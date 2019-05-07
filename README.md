@@ -1,4 +1,6 @@
 # Hour Service
+[![Build Status](http://drone.devheaven.nl/api/badges/devheaven-platform/hour/status.svg)](http://drone.devheaven.nl/devheaven-platform/hour)
+
 This repository contains the hour service for the DevHeaven platform.
 
 # Contribution
