@@ -12,7 +12,7 @@ pipeline:
 
   publish-staging:
     image: plugins/docker
-    repo: devheavenci/invoice-service
+    repo: devheavenci/hour-service
     tags: "${DRONE_COMMIT_SHA:0:8}"
     secrets: [ docker_username, docker_password ]
     when:
@@ -21,7 +21,7 @@ pipeline:
 
   publish-production:
     image: plugins/docker
-    repo: devheavenci/invoice-service
+    repo: devheavenci/hour-service
     tags: "${DRONE_TAG##v}"
     secrets: [ docker_username, docker_password ]
     when:
@@ -30,9 +30,9 @@ pipeline:
   deploy-staging:
     image: quay.io/honestbee/drone-kubernetes
     namespace: staging
-    deployment: invoice-deployment
-    repo: devheavenci/invoice-service
-    container: invoice
+    deployment: hour-deployment
+    repo: devheavenci/hour-service
+    container: hour
     tag: "${DRONE_COMMIT_SHA:0:8}"
     secrets: [ kubernetes_server, kubernetes_token, kubernetes_cert ]
     when:
@@ -42,9 +42,9 @@ pipeline:
   deploy-production:
     image: quay.io/honestbee/drone-kubernetes
     namespace: production
-    deployment: invoice-deployment
-    repo: devheavenci/invoice-service
-    container: invoice
+    deployment: hour-deployment
+    repo: devheavenci/hour-service
+    container: hour
     tag: "${DRONE_TAG##v}"
     secrets: [ kubernetes_server, kubernetes_token ]
     when:
