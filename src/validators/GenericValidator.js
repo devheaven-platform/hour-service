@@ -39,11 +39,19 @@ const isArray = value => typeof value === typeof [];
  * @returns true if the value is a boolean
  */
 const isBoolean = value => typeof value === typeof true;
+/**
+ * Checks if a value is of type Date
+ *
+ * @param {*} value the value to check
+ * @returns true if the value is a Date
+ */
+const isDate = value => value instanceof Date;
 
 module.exports = {
     id,
     isString,
     isNumber,
+    isDate,
     isArray,
     isBoolean,
 };
