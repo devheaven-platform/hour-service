@@ -14,7 +14,7 @@ const create = ( body ) => {
 
     if ( body.context === undefined ) {
         errors.name = "Context is required";
-    } if ( !GenericValidator.isString( body.context ) ) {
+    } else if ( !GenericValidator.isString( body.context ) ) {
         errors.name = "Context must be of type string";
     } else if ( body.context.trim() === "" ) {
         errors.name = "Context cannot be a empty string";
@@ -23,13 +23,13 @@ const create = ( body ) => {
     }
     if ( body.startDate === undefined ) {
         errors.name = "Start date is required";
-    } if ( !GenericValidator.isDate( new Date( body.startDate ) ) ) {
+    } else if ( !GenericValidator.isDate( new Date( body.startDate ) ) ) {
         errors.name = "Start date must be of type string";
     }
 
     if ( body.endDate === undefined ) {
         errors.name = "End date is required";
-    } if ( !GenericValidator.isDate( new Date( body.endDate ) ) ) {
+    } else if ( !GenericValidator.isDate( new Date( body.endDate ) ) ) {
         errors.name = "End date must be of type string";
     } else if ( new Date( body.endDate ).getDate() < new Date( body.startDate ).getDate ) {
         errors.name = "End date must be after the begin date";
