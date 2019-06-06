@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle, no-param-reassign */
-const mongoose = require("mongoose");
-const uuid = require("uuid");
+const mongoose = require( "mongoose" );
+const uuid = require( "uuid" );
 
 /**
  * @swagger
@@ -37,7 +37,7 @@ const uuid = require("uuid");
  *         - createdAt
  *         - updatedAt
  */
-const WorkPeriod = new mongoose.Schema({
+const WorkPeriod = new mongoose.Schema( {
     _id: {
         type: String,
         default: uuid.v4,
@@ -58,13 +58,13 @@ const WorkPeriod = new mongoose.Schema({
         type: Date,
         default: 0,
     },
-}, { timestamps: true });
+}, { timestamps: true } );
 
-WorkPeriod.set("toJSON", {
+WorkPeriod.set( "toJSON", {
     virtuals: true,
     vesionKey: false,
-    transform: (doc, ret) => { delete ret._id; },
-});
+    transform: ( doc, ret ) => { delete ret._id; },
+} );
 
-module.exports = mongoose.model("WorkPeriod", WorkPeriod);
+module.exports = mongoose.model( "WorkPeriod", WorkPeriod );
 /* eslint-enable no-underscore-dangle, no-param-reassign */

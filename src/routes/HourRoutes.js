@@ -1,6 +1,7 @@
 const express = require( "express" );
 
 const asyncMiddleware = require( "../config/middleware/Async" );
+const authMiddleware = require( "../config/middleware/Auth" );
 const controller = require( "../controllers/HourController" );
 
 /**
@@ -30,10 +31,12 @@ const router = express.Router();
  *            $ref: '#/components/responses/Unauthorized'
  *          '500':
  *            $ref: '#/components/responses/InternalServerError'
+ *      security:
+ *        - bearerAuth: []
  *      tags:
  *        - WorkPeriods
  */
-router.get( "/", asyncMiddleware( controller.getWorkPeriods ) );
+router.get( "/", authMiddleware, asyncMiddleware( controller.getWorkPeriods ) );
 
 /**
  * @swagger
@@ -63,10 +66,12 @@ router.get( "/", asyncMiddleware( controller.getWorkPeriods ) );
  *            $ref: '#/components/responses/NotFound'
  *          '500':
  *            $ref: '#/components/responses/InternalServerError'
+ *      security:
+ *        - bearerAuth: []
  *      tags:
- *        - Workperiods
+ *        - WorkPeriods
  */
-router.get( "/:id", asyncMiddleware( controller.getWorkPeriodById ) );
+router.get( "/:id", authMiddleware, asyncMiddleware( controller.getWorkPeriodById ) );
 
 /**
  * @swagger
@@ -115,10 +120,12 @@ router.get( "/:id", asyncMiddleware( controller.getWorkPeriodById ) );
  *            $ref: '#/components/responses/Unauthorized'
  *          '500':
  *            $ref: '#/components/responses/InternalServerError'
+ *      security:
+ *        - bearerAuth: []
  *      tags:
  *        - WorkPeriods
  */
-router.post( "/", asyncMiddleware( controller.createWorkPeriod ) );
+router.post( "/", authMiddleware, asyncMiddleware( controller.createWorkPeriod ) );
 
 /**
  * @swagger
@@ -171,10 +178,12 @@ router.post( "/", asyncMiddleware( controller.createWorkPeriod ) );
  *            $ref: '#/components/responses/NotFound'
  *          '500':
  *            $ref: '#/components/responses/InternalServerError'
+ *      security:
+ *        - bearerAuth: []
  *      tags:
  *        - WorkPeriods
  */
-router.patch( "/:id", asyncMiddleware( controller.updateWorkPeriod ) );
+router.patch( "/:id", authMiddleware, asyncMiddleware( controller.updateWorkPeriod ) );
 
 /**
  * @swagger
@@ -198,9 +207,11 @@ router.patch( "/:id", asyncMiddleware( controller.updateWorkPeriod ) );
  *            $ref: '#/components/responses/NotFound'
  *          '500':
  *            $ref: '#/components/responses/InternalServerError'
+ *      security:
+ *        - bearerAuth: []
  *      tags:
- *        - Boards
+ *        - WorkPeriods
  */
-router.delete( "/:id", asyncMiddleware( controller.deleteWorkPeriod ) );
+router.delete( "/:id", authMiddleware, asyncMiddleware( controller.deleteWorkPeriod ) );
 
 module.exports = router;
